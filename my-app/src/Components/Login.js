@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from './UserContext.js';
 import '../App.css';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const { setUser } = useContext(UserContext);
+
+    const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -17,11 +21,20 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add your login logic here
+        
+        // ... rest of submit logic ...
+        if (username === 'admin' && password === 'admin') {
+            alert('Login Successful!');
+            setUser(username);
+            navigate(`/user/${username}`);
+        }
+        else {
+            alert('Invalid Credentials!');
+        }
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '660px', padding: '15px' }}>
+        <div className='custom-container' style={{ flexDirection: "row" }}>
             <div style={{ width: '100%', maxWidth: '330px', padding: '15px' }}>
                 <h2>Login</h2>
                 <Form onSubmit={handleSubmit}>
@@ -46,7 +59,7 @@ const Login = () => {
                     </Button>
                 </Form>
             </div>
-            <div style={{ borderLeft: '1px solid #000', alignSelf: 'stretch', margin: '0 15px' }}></div>
+            <div style={{ borderLeft: '1px solid #000', height: '25vw', alignSelf: 'center', margin: '0 15px' }}></div>
             <div style={{ width: '100%', maxWidth: '330px', padding: '15px' , textAlign: 'center' , alignContent: 'center' }}>
                 <h2>Create Account</h2>
                 <Link to="/create-account">

@@ -43,3 +43,11 @@
   margin-top: 15px;
 }
 
+.custom-container {
+  padding-top: 56px; 
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 112px);
+  align-items: center;
+  flex-direction: column;
+}

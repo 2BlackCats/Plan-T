@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const CreateAccount = () => {
     const [email, setEmail] = useState('');
     const [confirmEmail, setConfirmEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -32,12 +35,15 @@ const CreateAccount = () => {
         }
 
         // ... rest of submit logic ...
+
+        alert('Account has been created!');
+        navigate('/login');
     };
 
     return (
-        <div className="container">
+        <div className="custom-container">
             <h2>Create Account</h2>
-            <Form onSubmit={handleSubmit}>
+            <Form style={{ minWidth: "50vw" }} onSubmit={handleSubmit}>
                 <Form.Group controlId="formEmail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" value={email} onChange={handleEmailChange} />

@@ -34,10 +34,8 @@ function Layout() {
                     <Nav.Link className="text-black" as={Link} to="/login">Login</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
-            </Navbar>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '90vh' , paddingTop: '80px' }}>
-            <Outlet />
-            </div>
+            </Navbar>  
+            <Outlet />          
         </div>
     );
 }
