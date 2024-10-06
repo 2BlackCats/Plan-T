@@ -153,7 +153,7 @@ static void UserApp1SM_Idle(void)
       HEARTBEAT_OFF();
       bToggle = FALSE;
     }
-    else
+    else if (!bToggle)
     {
       HEARTBEAT_ON();
       bToggle = TRUE;

@@ -6,7 +6,7 @@
         {
             "label": "Build firmware",
             "type": "process",
-            "command": "python",
+            "command": "py",
             "args": [
                 "waf",
                 "build",

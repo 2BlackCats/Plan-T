@@ -379,8 +379,8 @@ def get_jlink_srch_path(exe_name: str):
 
         install_roots = [
             "C:\\Program Files\\SEGGER\\",
-            "C:\\Program Files (x86)\\SEGGER\\",
-            "D:\\SEGGER\\JLink_V798i",
+            # "C:\\Program Files (x86)\\SEGGER\\JLink_V810\\",
+            # "D:\\SEGGER\\JLink_V810",
         ]
 
     elif Utils.unversioned_sys_platform() == "darwin":
