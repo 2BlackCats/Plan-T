@@ -142,23 +142,41 @@ State Machine Function Definitions
 static void UserApp1SM_Idle(void)
 {
   static u16 u16Counter = U16_COUNTER_PERIOD_MS;
-  static bool bToggle = FALSE;
+  static u16 bToggle = 0;
   u16Counter--;
-  if (u16Counter == 0)
+  if (u16Counter == 0 && IsButtonHeld(BUTTON0, 1))
   {
     u16Counter = U16_COUNTER_PERIOD_MS;
 
-    if (bToggle)
+    if (bToggle == 0)
     {
-      HEARTBEAT_OFF();
-      bToggle = FALSE;
+      LedOff(RED0);
+      LedOff(GREEN0);
+      LedOn(BLUE0);
+      bToggle++;
     }
-    else if (!bToggle)
+    else if (bToggle == 1)
     {
-      HEARTBEAT_ON();
-      bToggle = TRUE;
+      LedOff(GREEN0);
+      LedOff(BLUE0);
+      LedOn(RED0);
+      bToggle++;
+    }
+    else {
+      LedOff(BLUE0);
+      LedOff(RED0);
+      LedOn(GREEN0);
+      bToggle = 0;
     }
   }
+  else if (u16Counter != 0 && !IsButtonHeld(BUTTON0, 10)) 
+  {
+    u16Counter = U16_COUNTER_PERIOD_MS;
+    LedOff(BLUE0);
+    LedOff(RED0);
+    LedOff(GREEN0);
+  }
+
   
 } /* end UserApp1SM_Idle() */
      
